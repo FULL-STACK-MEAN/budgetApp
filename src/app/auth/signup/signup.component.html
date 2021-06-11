@@ -32,8 +32,22 @@
                 </div>
             </div>
             <div class="flex j-end a-center m-t">
-                <button type="submit" class="outline">Registrar</button>
+                <button type="button" 
+                        class="outline"
+                        *ngIf="form.invalid || this.form.get('password').value !== this.form.get('checkPassword').value"
+                        (click)="setValidation()">
+                    Registrar
+                </button>
+                <button type="submit" 
+                        class="outline"
+                        *ngIf="form.valid && this.form.get('password').value === this.form.get('checkPassword').value">
+                    Registrar
+                </button>
             </div>
         </form>
+        <div class="auth-valid" *ngIf="showValidation">
+            <img class="m-r-small" src="../../../assets/img/icons/alert-triangle-white.svg" alt="">
+            {{validationMessage}}
+        </div>
     </div>
 </div>

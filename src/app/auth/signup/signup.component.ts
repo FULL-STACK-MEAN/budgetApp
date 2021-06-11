@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -10,16 +10,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
 
   form: FormGroup;
+  showValidation: boolean = false;
+  validationMessage: string;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      name: new FormControl(''),
-      surname: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
-      checkPassword: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
+      surname: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      checkPassword: new FormControl('', [Validators.required]),
     })
   }
 
@@ -36,6 +38,13 @@ export class SignupComponent implements OnInit {
                     }, (err: any) => {
                       console.log(err);
                     })
+  }
+
+  setValidation() {
+    if(this.form.get('password').value !== this.form.get('checkPassword').value) {
+      this.validationMessage = "Las contraseñas no coinciden"
+    }
+    this.showValidation = true;
   }
 
 }
