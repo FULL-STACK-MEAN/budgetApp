@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.logIn(credentials)
                     .subscribe((res: any) => {
+                      this.authService.setUserState(res.userState);
                       this.router.navigate(['/']);
                     }, (err: any) => {
                       this.validationMessages = [];
