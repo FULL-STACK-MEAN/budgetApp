@@ -11,7 +11,7 @@ export class SignupComponent implements OnInit {
 
   form: FormGroup;
   showValidation: boolean = false;
-  validationMessage: string;
+  validationMessages: Array<string> = [];
 
   constructor(private authService: AuthService) { }
 
@@ -19,9 +19,14 @@ export class SignupComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)]),
+      password: new FormControl('', [Validators.required, Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/)]),
       checkPassword: new FormControl('', [Validators.required]),
+    })
+    this.form.valueChanges.subscribe((data: any) => {
+      if(this.showValidation) {
+        this.setValidation();
+      }
     })
   }
 
@@ -41,8 +46,27 @@ export class SignupComponent implements OnInit {
   }
 
   setValidation() {
+    this.validationMessages = [];
+    if(this.form.get('name').errors?.required) {
+      this.validationMessages.push("El nombre es obligatorio");
+    }
+    if(this.form.get('surname').errors?.required) {
+      this.validationMessages.push("Los apellidos son obligatorios");
+    }
+    if(this.form.get('email').errors?.required) {
+      this.validationMessages.push("El correo electrónico es obligatorio");
+    }
+    if(this.form.get('email').errors?.pattern) {
+      this.validationMessages.push("El correo electrónico no es correcto");
+    }
+    if(this.form.get('password').errors?.required) {
+      this.validationMessages.push("La contraseña es obligatoria");
+    }
+    if(this.form.get('password').errors?.pattern) {
+      this.validationMessages.push("La contraseña debe tener al menos una minúscula, una mayúscula y un número");
+    }
     if(this.form.get('password').value !== this.form.get('checkPassword').value) {
-      this.validationMessage = "Las contraseñas no coinciden"
+      this.validationMessages.push("Las contraseñas no coinciden");
     }
     this.showValidation = true;
   }

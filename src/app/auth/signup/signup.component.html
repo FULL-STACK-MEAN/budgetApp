@@ -45,9 +45,13 @@
                 </button>
             </div>
         </form>
-        <div class="auth-valid" *ngIf="showValidation">
+        <div class="auth-valid" *ngIf="showValidation && validationMessages.length > 0">
             <img class="m-r-small" src="../../../assets/img/icons/alert-triangle-white.svg" alt="">
-            {{validationMessage}}
+            <ul>
+                <li *ngFor="let message of validationMessages">
+                    {{message}}
+                </li>
+            </ul>
         </div>
     </div>
 </div>
