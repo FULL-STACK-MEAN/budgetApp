@@ -41,8 +41,14 @@ export class SignupComponent implements OnInit {
                     .subscribe((res: any) => {
                       console.log(res);
                     }, (err: any) => {
-                      console.log(err);
-                    })
+                      this.validationMessages = [];
+                      this.showValidation = true;
+                      if(err.error?.message) {
+                        this.validationMessages.push(err.error.message);
+                      } else {
+                        this.validationMessages.push('El servidor no se encuentra disponible, inténtelo de nuevo más tarde');
+                      }
+                    }) 
   }
 
   setValidation() {
