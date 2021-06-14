@@ -47,5 +47,18 @@ export class AuthService {
                     )
   }
 
+  checkToken() {
+    const token = localStorage.getItem('token');
+    const options = {
+      headers: { authorization: token}
+    }
+    return this.http.get(this.authEndpoint + 'checktoken', options)
+                    .pipe(
+                      map((res: any) => {
+                        return res;
+                      })
+                    )
+  }
+
 
 }
