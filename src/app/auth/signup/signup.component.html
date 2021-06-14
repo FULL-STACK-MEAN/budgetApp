@@ -31,7 +31,8 @@
                     <input type="password"  formControlName="checkPassword">
                 </div>
             </div>
-            <div class="flex j-end a-center m-t">
+            <div class="flex j-between a-center m-t">
+                <p class="link">Si ya dispone de cuenta pulse <span routerLink="/login">aquí</span></p>
                 <button type="button" 
                         class="outline"
                         *ngIf="form.invalid || this.form.get('password').value !== this.form.get('checkPassword').value"

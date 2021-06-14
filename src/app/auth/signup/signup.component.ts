@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class SignupComponent implements OnInit {
   showValidation: boolean = false;
   validationMessages: Array<string> = [];
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -39,7 +41,7 @@ export class SignupComponent implements OnInit {
     }
     this.authService.signUp(user)
                     .subscribe((res: any) => {
-                      console.log(res);
+                      this.router.navigate(['/']);
                     }, (err: any) => {
                       this.validationMessages = [];
                       this.showValidation = true;

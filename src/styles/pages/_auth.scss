@@ -40,6 +40,15 @@
                     border-bottom: 1px solid white;
                     color: white;
                 }
+
+                p.link {
+                    font-size: 0.7rem;
+
+                    span {
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
             }
 
             .auth-valid {
