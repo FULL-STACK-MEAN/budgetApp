@@ -18,7 +18,7 @@ export class AppComponent {
     } else {
       this.authService.checkToken()
                       .subscribe((res: any) => {
-                        console.log(res);
+                        this.authService.setUserState(res.user);
                       }, (err: any) => {
                         this.router.navigate(['/login']);
                       })

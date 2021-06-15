@@ -34,7 +34,7 @@ export class InterceptorService {
                   }),
                   catchError((err: HttpErrorResponse) => {
                     if(err.status === 403) {
-                      this.router.navigate(['/auth/login']);
+                      this.router.navigate(['/login']);
                     }
                     return throwError(err)
                   })
