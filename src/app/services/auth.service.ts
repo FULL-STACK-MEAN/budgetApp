@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,8 @@ export class AuthService {
     this.userStateSubject.next(this.userState);
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private router: Router) { }
 
   signUp(user) {
     return this.http.post(this.authEndpoint + 'signup', user)
@@ -54,6 +56,20 @@ export class AuthService {
                         return res;
                       })
                     )
+  }
+
+  logOut() {
+    return this.http.get(this.authEndpoint + 'logout')
+                    .subscribe((res: any) => {
+                      console.log(res);
+                      this.setUserState({
+                        _id: '',
+                        name: ''
+                      })
+                      this.router.navigate(['/login']);
+                    }, (err: any) => {
+                      console.log(err);
+                    })
   }
 
 

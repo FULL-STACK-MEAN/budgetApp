@@ -41,6 +41,7 @@ export class SignupComponent implements OnInit {
     }
     this.authService.signUp(user)
                     .subscribe((res: any) => {
+                      this.authService.setUserState(res.userState);
                       this.router.navigate(['/']);
                     }, (err: any) => {
                       this.validationMessages = [];

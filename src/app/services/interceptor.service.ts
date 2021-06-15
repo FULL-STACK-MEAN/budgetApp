@@ -13,17 +13,17 @@ export class InterceptorService {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let request;
-    if(localStorage.getItem('token')) {
-      const token = localStorage.getItem('token') + '';
+    // if(localStorage.getItem('token')) {
+    //   const token = localStorage.getItem('token') + '';
+    //   request = req.clone({
+    //     setHeaders: {authorization: token},
+    //     withCredentials: true
+    //   })
+    // } else {
       request = req.clone({
-        setHeaders: {authorization: token},
         withCredentials: true
       })
-    } else {
-      request = req.clone({
-        withCredentials: true
-      })
-    }
+    // }
 
     return next.handle(request)
                .pipe(
