@@ -31,4 +31,13 @@ export class UsersService {
                     )
   }
 
+  updateUserRole(_id: string, role: string) {
+    return this.http.put(this.usersEndpoint + 'role/' + _id, {role})
+                    .pipe(
+                      map( (res: any) => {
+                        return res;
+                      })
+                    )
+  }
+
 }

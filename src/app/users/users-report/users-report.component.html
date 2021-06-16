@@ -19,7 +19,8 @@
                     </select>
                 </td>
                 <td>
-                    <img src="/assets/img/icons/save.svg" alt="">
+                    <img *ngIf="user._id !== userUpdated._id" src="/assets/img/icons/save-grey.svg">
+                    <img *ngIf="user._id === userUpdated._id" src="/assets/img/icons/save.svg" (click)="updateUserRole()">
                 </td>
             </tr>
         </table>

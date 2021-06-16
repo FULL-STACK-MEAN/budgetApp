@@ -32,4 +32,13 @@ export class UsersReportComponent implements OnInit {
     }
   } 
 
+  updateUserRole() {
+    this.userService.updateUserRole(this.userUpdated._id, this.userUpdated.role)
+                    .subscribe((res: any) => {
+                      console.log(res);
+                    }, (err: any) => {
+                      console.log(err);
+                    })
+  }
+
 }
