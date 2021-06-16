@@ -1,6 +1,11 @@
 <div class="container show">
     <div class="home-card-grid">
-        <div class="card home">
+        <div class="card home" *ngIf="userRole === 'user'">
+            <div>
+                <p>Bienvenido a la aplicación, en breve le será asignado el acceso a su workplace</p>
+            </div>
+        </div>
+        <div class="card home" *ngIf="userRole === 'sales' || userRole === 'admin'">
             <div>
                 <h1>Clientes</h1>
                 <img src="/assets/img/icons/customers-front.svg">
@@ -9,7 +14,7 @@
                 <button routerLink="/customers">Acceder</button>
             </div>
         </div>
-        <div class="card home">
+        <div class="card home" *ngIf="userRole === 'sales' || userRole === 'admin'">
             <div>
                 <h1>Presupuestos</h1>
                 <img src="/assets/img/icons/budgets-front.svg">
@@ -18,7 +23,7 @@
                 <button>Acceder</button>
             </div>
         </div>
-        <div class="card home">
+        <div class="card home" *ngIf="userRole === 'admin'">
             <div>
                 <h1>Usuarios</h1>
                 <img src="/assets/img/icons/users-front.svg">

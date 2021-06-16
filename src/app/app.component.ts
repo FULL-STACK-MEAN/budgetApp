@@ -9,6 +9,8 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
 
+  loading: boolean = false;
+
   constructor(private router: Router,
               private authService: AuthService) {}
   
@@ -16,11 +18,14 @@ export class AppComponent {
     // if (!localStorage.getItem('token')) {
     //   this.router.navigate(['/login']);
     // } else {
+      this.loading = true;
       this.authService.checkToken()
                       .subscribe((res: any) => {
                         this.authService.setUserState(res.user);
+                        this.loading = false;
                       }, (err: any) => {
                         this.router.navigate(['/login']);
+                        this.loading = false;
                       })
     // }
   }

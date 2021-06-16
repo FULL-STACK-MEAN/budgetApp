@@ -13,6 +13,15 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
+  getUsers() {
+    return this.http.get(this.usersEndpoint)
+                    .pipe(
+                      map( (res: any) => {
+                        return res;
+                      })
+                    )
+  }
+
   getUser(_id: string) {
     return this.http.get(this.usersEndpoint + _id)
                     .pipe(

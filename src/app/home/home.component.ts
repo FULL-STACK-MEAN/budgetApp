@@ -8,14 +8,14 @@ import { AuthService } from '../services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  user: any;
+  userRole: any;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authService.getUserState()
                     .subscribe((data: any) => {
-                      this.user = data;
+                      this.userRole = data.role;
                     })
   }
 

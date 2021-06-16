@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { InterceptorService } from './services/interceptor.service';
 import { HeaderMenuComponent } from './nav/header-menu/header-menu.component';
+import { LoaderComponent } from './nav/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HeaderMenuComponent } from './nav/header-menu/header-menu.component';
     SignupComponent,
     HomeComponent,
     LoginComponent,
-    HeaderMenuComponent
+    HeaderMenuComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
