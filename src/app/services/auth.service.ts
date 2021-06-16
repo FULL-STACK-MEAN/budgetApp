@@ -14,7 +14,8 @@ export class AuthService {
 
   private userState = {
     _id: '',
-    name: ''
+    name: '',
+    role: ''
   }
 
   private userStateSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this.userState);
