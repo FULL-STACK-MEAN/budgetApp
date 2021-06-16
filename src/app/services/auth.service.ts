@@ -50,6 +50,11 @@ export class AuthService {
   }
 
   checkToken() {
+    // const token = localStorage.getItem('token');
+    // const options = {
+    //   headers: { authorization: token}
+    // }
+    // return this.http.get(this.authEndpoint + 'checktoken', options)
     return this.http.get(this.authEndpoint + 'checktoken')
                     .pipe(
                       map((res: any) => {

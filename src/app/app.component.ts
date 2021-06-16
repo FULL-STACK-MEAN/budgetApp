@@ -13,16 +13,16 @@ export class AppComponent {
               private authService: AuthService) {}
   
   ngOnInit() {
-    if (!localStorage.getItem('token')) {
-      this.router.navigate(['/login']);
-    } else {
+    // if (!localStorage.getItem('token')) {
+    //   this.router.navigate(['/login']);
+    // } else {
       this.authService.checkToken()
                       .subscribe((res: any) => {
                         this.authService.setUserState(res.user);
                       }, (err: any) => {
                         this.router.navigate(['/login']);
                       })
-    }
+    // }
   }
 
 

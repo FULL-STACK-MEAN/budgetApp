@@ -1,5 +1,31 @@
 <div class="container show">
-    <h1>Inicio</h1>
-    <p>Bienvenido {{user.name}}</p>
-    <button routerLink="/users/user-profile">Ir a mi cuenta</button>
+    <div class="home-card-grid">
+        <div class="card home">
+            <div>
+                <h1>Clientes</h1>
+                <img src="/assets/img/icons/customers-front.svg">
+            </div>
+            <div>
+                <button routerLink="/customers">Acceder</button>
+            </div>
+        </div>
+        <div class="card home">
+            <div>
+                <h1>Presupuestos</h1>
+                <img src="/assets/img/icons/budgets-front.svg">
+            </div>
+            <div>
+                <button>Acceder</button>
+            </div>
+        </div>
+        <div class="card home">
+            <div>
+                <h1>Usuarios</h1>
+                <img src="/assets/img/icons/users-front.svg">
+            </div>
+            <div>
+                <button routerLink="/users">Acceder</button>
+            </div>
+        </div>
+    </div>
 </div>

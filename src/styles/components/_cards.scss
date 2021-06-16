@@ -1,14 +1,30 @@
 .card {
     padding: 1rem;
-    margin: 1rem;
-    box-shadow: 2px 2px 4px grey;
+    border-radius: 0.3rem;
+    box-shadow: $shadow;
+    background-color: white;
 
-    h1 {
-        border-bottom: 1px solid lightgray;
-        padding-bottom: 0.5rem;
+    &.home {
+        width: 360px;
+        padding: 0;
+
+        div:nth-child(1) {
+            padding: 2rem 1rem;
+            @include flex(row, center, center);
+            h1 {
+                font-size: 1.3rem;
+            }
+            img {
+                margin-left: 0.5rem;
+                height: 80px;
+            }
+        }
+        div:nth-child(2) {
+            padding: 1rem;
+            border-top: 1px solid lightgray;
+            @include flex(row, center, center);
+        }
+
     }
 
-    p:nth-of-type(1) {
-        margin-top: 1rem;
-    }
 }
