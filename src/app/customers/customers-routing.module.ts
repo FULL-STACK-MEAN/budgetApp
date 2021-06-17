@@ -5,7 +5,14 @@ import { CustomersReportComponent } from './customers-report/customers-report.co
 
 const routes: Routes = [
   {path: '', component: CustomersReportComponent},
-  {path: 'create-customer', component: CreateCustomerComponent}
+  {
+    path: 'create-customer', 
+    component: CreateCustomerComponent,
+    data: {
+      title: 'Nuevo cliente',
+      absolutePath: '/customers/create-customer'
+    }
+  }
 ];
 
 @NgModule({

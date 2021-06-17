@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'customers',
     loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule),
-    canActivate: [SalesGuard]
+    canActivate: [SalesGuard],
+    data: {
+      title: 'Clientes',
+      absolutePath: '/customers'
+    }
   },
 ];
 
