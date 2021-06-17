@@ -1,0 +1,16 @@
+.breadcrumbs {
+    @include flex(row, flex-start, center);
+
+    p {
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+        cursor: pointer;
+        color: #6e6e6e;
+
+        &.active {
+            cursor: default;
+            color: $primary-font-color;
+            font-weight: bold;
+        }
+    }
+}
