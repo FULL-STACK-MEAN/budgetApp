@@ -7,6 +7,7 @@ aside {
     z-index: 100;
     background-color: $primary-font-color;
     padding-top: 80px;
+    transition: 900ms left ease-in-out;
 
     .burger {
         position: absolute;
@@ -20,17 +21,23 @@ aside {
             height: 2px;
             margin: 6px 0;
             background-color: white;
+            transition: 900ms all ease-in-out;
         }
     }
 
     &.open {
         left: 0;
 
-        #burger {
+        .burger {
             .bar.top {
                 transform: translateY(8px) rotateZ(45deg);
             }
-            //.bar.c
+            .bar.center {
+                width: 0;
+            }
+            .bar.bottom {
+                transform: translateY(-8px) rotateZ(-45deg);
+            }
         }
     }
 

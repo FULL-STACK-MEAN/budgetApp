@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { SalesGuard } from './guards/sales.guard';
+import { UsersGuard } from './guards/users.guard';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -10,11 +12,13 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {
     path: 'users',
-    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
+    canActivate: [UsersGuard]
   },
   {
     path: 'customers',
-    loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)
+    loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule),
+    canActivate: [SalesGuard]
   },
 ];
 
