@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Customer } from 'src/app/models/customer.model';
 import { CustomersService } from 'src/app/services/customers.service';
+import { ToastMessagesService } from 'src/app/services/toast-messages.service';
 
 @Component({
   selector: 'app-create-customer',
@@ -13,6 +14,7 @@ export class CreateCustomerComponent implements OnInit {
   dataRoutes: any;
 
   constructor(private route: ActivatedRoute,
+              private toastMessagesService: ToastMessagesService,
               private customersService: CustomersService) { }
 
   ngOnInit(): void {
@@ -22,9 +24,13 @@ export class CreateCustomerComponent implements OnInit {
   submitCustomer(event: Customer) {
       this.customersService.postCustomer(event)
                            .subscribe((res: any) => {
-                               console.log(res);
+                               this.toastMessagesService.setToastMessage('success', res.message);
                            }, (err: any) => {
-                               console.log(err);
+                               if (err.error?.message) {
+                                   this.toastMessagesService.setToastMessage('danger', err.error.message);
+                               } else {
+                                   this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos')
+                               }
                            })
   }
 
