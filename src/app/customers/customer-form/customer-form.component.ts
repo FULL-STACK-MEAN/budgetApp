@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Customer } from 'src/app/models/customer.model';
 import { ValidateCif } from '../cif.validator';
@@ -11,6 +11,7 @@ import { ValidateCif } from '../cif.validator';
 export class CustomerFormComponent implements OnInit {
 
     form: FormGroup;
+    @Input() customer: Customer;
     @Output() customerEmitter: EventEmitter<Customer> = new EventEmitter();
     showValidation: boolean = false;
     
@@ -30,7 +31,7 @@ export class CustomerFormComponent implements OnInit {
                 email: new FormControl('', [Validators.required, Validators.pattern(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/)])
             })
         })
-        console.log(this.form.get('contact'))
+        this.form.patchValue(this.customer);
     }
 
     setValidation() {

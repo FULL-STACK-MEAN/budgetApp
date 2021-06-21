@@ -7,13 +7,15 @@ import { CustomersReportComponent } from './customers-report/customers-report.co
 import { CreateCustomerComponent } from './create-customer/create-customer.component';
 import { SharedModule } from '../shared/shared.module';
 import { CustomerFormComponent } from './customer-form/customer-form.component';
+import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 
 
 @NgModule({
   declarations: [
     CustomersReportComponent,
     CreateCustomerComponent,
-    CustomerFormComponent
+    CustomerFormComponent,
+    UpdateCustomerComponent
   ],
   imports: [
     CommonModule,

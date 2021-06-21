@@ -13,6 +13,24 @@ export class CustomersService {
 
   constructor(private http: HttpClient) { }
 
+  getCustomers() {
+      return this.http.get(this.customersEndpoint)
+                      .pipe(
+                        map((res: any) => {
+                            return res;
+                        })
+                       )
+  }
+
+  getCustomer(_id: string) {
+      return this.http.get(this.customersEndpoint + _id)
+                      .pipe(
+                        map((res: any) => {
+                            return res;
+                        })
+                       )
+  }
+
   postCustomer(customer: Customer) {
     return this.http.post(this.customersEndpoint, customer)
                     .pipe(

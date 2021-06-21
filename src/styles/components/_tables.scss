@@ -19,4 +19,8 @@ table {
             cursor: pointer;
         }
     }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
 }

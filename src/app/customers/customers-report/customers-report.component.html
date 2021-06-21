@@ -3,6 +3,21 @@
         <button class="outline" routerLink="create-customer">Nuevo Cliente</button>
     </app-breadcrumbs>
     <div class="card">
-        
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>CIF</th>
+                <th>Localidad</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let customer of customers">
+                <td>{{customer.name}}</td>
+                <td>{{customer.cif}}</td>
+                <td>{{customer.city}}</td>
+                <td>
+                    <img src="/assets/img/icons/edit.svg" routerLink="update-customer/{{customer._id}}">
+                </td>
+            </tr>
+        </table>
     </div>
 </div>

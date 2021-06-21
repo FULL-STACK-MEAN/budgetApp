@@ -1,4 +1,5 @@
 export interface Customer {
+    _id?: string,
     name: string,
     cif: string,
     adress: string,

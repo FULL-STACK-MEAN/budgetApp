@@ -5,14 +5,15 @@ import { CustomersService } from 'src/app/services/customers.service';
 import { ToastMessagesService } from 'src/app/services/toast-messages.service';
 
 @Component({
-  selector: 'app-customers-report',
-  templateUrl: './customers-report.component.html',
-  styleUrls: ['./customers-report.component.scss']
+  selector: 'app-update-customer',
+  templateUrl: './update-customer.component.html',
+  styleUrls: ['./update-customer.component.scss']
 })
-export class CustomersReportComponent implements OnInit {
+export class UpdateCustomerComponent implements OnInit {
 
   dataRoutes: any;
-  customers: Array<Customer>;
+  _id: string;
+  customer: Customer;
 
   constructor(private route: ActivatedRoute,
               private toastMessagesService: ToastMessagesService,
@@ -20,13 +21,23 @@ export class CustomersReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataRoutes = this.route.pathFromRoot;
-    this.loadCustomers();
+    this._id = this.route.snapshot.params._id;
+    this.customersService.getCustomer(this._id)
+                         .subscribe((res: any) => {
+                            this.customer = res.customer;
+                         }, (err: any) => {
+                            if (err.error?.message) {
+                                this.toastMessagesService.setToastMessage('danger', err.error.message);
+                            } else {
+                                this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos')
+                            }
+                         })
   }
 
-  loadCustomers(): void {
-      this.customersService.getCustomers()
+  submitCustomer(event: Customer) {
+      this.customersService.postCustomer(event)
                            .subscribe((res: any) => {
-                               this.customers = res.customers;
+                               this.toastMessagesService.setToastMessage('success', res.message);
                            }, (err: any) => {
                                if (err.error?.message) {
                                    this.toastMessagesService.setToastMessage('danger', err.error.message);
