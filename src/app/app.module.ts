@@ -12,6 +12,7 @@ import { InterceptorService } from './services/interceptor.service';
 import { HeaderMenuComponent } from './nav/header-menu/header-menu.component';
 import { LoaderComponent } from './nav/loader/loader.component';
 import { SideMenuComponent } from './nav/side-menu/side-menu.component';
+import { ToastMessagesComponent } from './nav/toast-messages/toast-messages.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SideMenuComponent } from './nav/side-menu/side-menu.component';
     LoginComponent,
     HeaderMenuComponent,
     LoaderComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    ToastMessagesComponent
   ],
   imports: [
     BrowserModule,
