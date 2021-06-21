@@ -1,6 +1,33 @@
 form {
     padding: 1rem;
 
+    .form-title {
+        @include flex(row, flex-start, center);
+        color: $primary-font-color;
+        font-size: 1rem;
+        margin: 1.5rem 0 0.5rem;
+
+        &:nth-of-type(1) {
+            margin: 0.5rem 0;
+        }
+
+        &::before {
+            content: "";
+            width: 10px;
+            border-bottom: 1px solid $primary-font-color;
+            margin: auto;
+            margin-right: 10px;
+        }
+
+        &::after {
+            content: "";
+            flex: 1 1;
+            border-bottom: 1px solid $primary-font-color;
+            margin: auto;
+            margin-left: 10px;
+        }
+    }
+
     .row {
         padding: 0.5rem 0;
 
@@ -83,7 +110,7 @@ input {
     font-size: 0.8rem;
     padding: 0.5em 1em;
     border: none;
-    border-radius: 0.3rem;
+    border-bottom: 1px solid lightgray;
     font-family: $regular-font-family;
     transition: 400ms all ease-in-out;
 

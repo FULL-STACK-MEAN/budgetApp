@@ -14,7 +14,7 @@ export class CustomersService {
   constructor(private http: HttpClient) { }
 
   postCustomer(customer: Customer) {
-    return this.http.put(this.customersEndpoint, customer)
+    return this.http.post(this.customersEndpoint, customer)
                     .pipe(
                       map((res: any) => {
                         return res;
