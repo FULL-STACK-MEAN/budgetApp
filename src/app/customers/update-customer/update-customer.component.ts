@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from 'src/app/models/customer.model';
 import { CustomersService } from 'src/app/services/customers.service';
 import { ToastMessagesService } from 'src/app/services/toast-messages.service';
@@ -16,6 +16,7 @@ export class UpdateCustomerComponent implements OnInit {
   customer: Customer;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private toastMessagesService: ToastMessagesService,
               private customersService: CustomersService) { }
 
@@ -35,9 +36,10 @@ export class UpdateCustomerComponent implements OnInit {
   }
 
   submitCustomer(event: Customer) {
-      this.customersService.postCustomer(event)
+      this.customersService.putCustomer(this._id, event)
                            .subscribe((res: any) => {
                                this.toastMessagesService.setToastMessage('success', res.message);
+                               this.router.navigate(['/customers']);
                            }, (err: any) => {
                                if (err.error?.message) {
                                    this.toastMessagesService.setToastMessage('danger', err.error.message);

@@ -40,4 +40,13 @@ export class CustomersService {
                     )
   }
 
+  putCustomer(_id: string, customer: Customer) {
+    return this.http.put(this.customersEndpoint + _id, customer)
+                    .pipe(
+                      map((res: any) => {
+                        return res;
+                      })
+                    )
+  }
+
 }
