@@ -1,0 +1,57 @@
+<form [formGroup]="form">
+    <p class="form-title">Cliente</p>
+    <div class="row">
+        <div class="col-50 p-r">
+            <label>Nombre</label>
+            <input type="text" formControlName="name">
+            <div class="search">
+                <div class="item" 
+                     *ngFor="let customer of customers"
+                     (click)="setCustomer(customer)">
+                    {{customer.name}}
+                </div>
+            </div>
+        </div>
+        <div class="col-50 p-l">
+            <label>CIF</label>
+            <input type="text" formControlName="cif" readonly>
+        </div>
+    </div>
+    <p class="form-title">A la atención de</p>
+    <div class="row">
+        <div class="col-50 p-r">
+            <label>Nombre</label>
+            <input type="text" formControlName="contactName" readonly>
+        </div>
+        <div class="col-50 p-l">
+            <label>Apellidos</label>
+            <input type="text" formControlName="contactSurname" readonly>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-50 p-r">
+            <label>Teléfono</label>
+            <input type="text" formControlName="contactPhone" readonly>
+        </div>
+        <div class="col-50 p-l">
+            <label>Correo electrónico</label>
+            <input type="text" formControlName="contactEmail" readonly>
+        </div>
+    </div>
+    <p class="form-title">Fechas</p>
+    <div class="row">
+        <div class="col-50 p-r">
+            <label>Fecha presupuesto</label>
+            <input type="date" formControlName="date">
+        </div>
+        <div class="col-50 p-r">
+            <label>Válido hasta</label>
+            <input type="date" formControlName="validUntil">
+        </div>
+    </div>
+    <p class="form-title">Artículos</p>
+    <div class="flex j-end a-center m-t">
+        <button class="outline m-r" type="button" routerLink="/budgets">Cancelar</button>
+        <button type="button">Enviar</button>
+    </div>
+</form>

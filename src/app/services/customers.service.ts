@@ -31,6 +31,15 @@ export class CustomersService {
                        )
   }
 
+  findCustomer(term: string) {
+      return this.http.get(this.customersEndpoint + 'search/' + term)
+                      .pipe(
+                        map((res: any) => {
+                            return res;
+                        })
+                       )
+  }
+
   postCustomer(customer: Customer) {
     return this.http.post(this.customersEndpoint, customer)
                     .pipe(
