@@ -12,7 +12,7 @@
         Clientes
         <img src="/assets/img/icons/customers.svg" alt="">
     </div>
-    <div class="item" *ngIf="userRole === 'sales' || userRole === 'admin'">
+    <div class="item" (click)="navTo('/budgets')" *ngIf="userRole === 'sales' || userRole === 'admin'">
         Presupuestos
         <img src="/assets/img/icons/budgets.svg" alt="">
     </div>

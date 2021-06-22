@@ -28,6 +28,15 @@ const routes: Routes = [
       absolutePath: '/customers'
     }
   },
+  {
+    path: 'budgets',
+    loadChildren: () => import('./budgets/budgets.module').then(m => m.BudgetsModule),
+    // canActivate: [SalesGuard],
+    data: {
+      title: 'Presupuestos',
+      absolutePath: '/budgets'
+    }
+  },
 ];
 
 @NgModule({
