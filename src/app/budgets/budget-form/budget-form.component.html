@@ -82,13 +82,20 @@
                     <input type="number" formControlName="price">
                 </div>
                 <div class="item">
-                    <input type="number" formControlName="amount">
+                    <input type="number" formControlName="amount" readonly>
                 </div>
                 <div class="item flex j-end a-center">
                     <button type="button" class="form-item" (click)="removeFormItem(i)">-</button>
                     <button type="button" class="form-item m-l-small" *ngIf="i === items.controls.length - 1" (click)="addFormItem()">+</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <p class="form-title">Total presupuesto (precios e importe sin IVA)</p>
+    <div class="row">
+        <div class="col-75"></div>
+        <div class="col-25">
+            <input type="number" formControlName="total" readonly>
         </div>
     </div>
     <div class="flex j-end a-center m-t">

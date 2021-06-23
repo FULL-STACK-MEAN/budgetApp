@@ -29,18 +29,20 @@ export class BudgetFormComponent implements OnInit {
             contactEmail: '',
             date: (new Date()).toISOString().substring(0,10),
             validUntil: (new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000)).toISOString().substring(0, 10),
-            items: new FormArray([])
+            items: new FormArray([]),
+            total: 0
         })
         this.searchCustomer();
         this.addFormItem();
+        this.changeFormItems();
     }
 
     newFormItem(): FormGroup {
         return this.fb.group({
             article: '',
-            quantity: 0,
-            price: 0,
-            amount: 0
+            quantity: null,
+            price: null,
+            amount: null
         })
     }
 
@@ -112,6 +114,28 @@ export class BudgetFormComponent implements OnInit {
                 }
             })
         }
+    }
+
+    changeFormItems() {
+        this.items.valueChanges
+                  .subscribe(dataItems => {
+                      dataItems.forEach((elem: any, i: number) => {
+                          this.items.at(i).get('amount').patchValue(this.setItemAmount(elem.quantity, elem.price), {emitEvent: false})
+                      });
+                      this.setTotal();
+                  })
+    }
+
+    setItemAmount(quantity: number, price: number): number {
+        return Math.round(quantity * price * 100) / 100;
+    }
+
+    setTotal() {
+        let total = 0;
+        this.items.controls.forEach((elem: any) => {
+            total += elem.controls.amount.value;
+        })
+        this.form.get('total').patchValue(total);
     }
 
 }
