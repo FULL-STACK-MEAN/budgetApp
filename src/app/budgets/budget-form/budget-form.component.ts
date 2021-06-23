@@ -1,5 +1,6 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { Budget } from 'src/app/models/budget.model';
 import { Customer } from 'src/app/models/customer.model';
 import { CustomersService } from 'src/app/services/customers.service';
 
@@ -10,6 +11,7 @@ import { CustomersService } from 'src/app/services/customers.service';
 })
 export class BudgetFormComponent implements OnInit {
 
+    @Output() budgetEmitter: EventEmitter<any> = new EventEmitter;
     form: FormGroup;
     customers: Array<Customer>;
     customer: Customer;
@@ -136,6 +138,16 @@ export class BudgetFormComponent implements OnInit {
             total += elem.controls.amount.value;
         })
         this.form.get('total').patchValue(total);
+    }
+
+    submitBudget() {
+        const budget: Budget = {
+            customer: this.customer,
+            date: new Date(this.form.get('date').value),
+            validUntil: new Date(this.form.get('validUntil').value),
+            items: this.form.get('items').value,
+        }
+        this.budgetEmitter.emit(budget);
     }
 
 }
