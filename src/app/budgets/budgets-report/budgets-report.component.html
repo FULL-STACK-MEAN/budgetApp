@@ -3,6 +3,21 @@
         <button class="outline" routerLink="create-budget">Nuevo Presupuesto</button>
     </app-breadcrumbs>
     <div class="card">
-
+        <table>
+            <tr>
+                <th>Código</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Importe sin IVA</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let budget of budgets">
+                <td>{{budget.code}}</td>
+                <td>{{budget.customer.name}}</td>
+                <td>{{budget.date}}</td>
+                <td>{{budget.total}}</td>
+                <td></td>
+            </tr>
+        </table>
     </div>
 </div>

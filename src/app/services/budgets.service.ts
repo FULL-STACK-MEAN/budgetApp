@@ -14,6 +14,15 @@ export class BudgetsService {
 
     constructor(private http: HttpClient) { }
 
+    getBudgets() {
+        return this.http.get(this.budgetsEndpoint)
+                        .pipe(
+                            map((res: any) => {
+                                return res;
+                            })
+                        )
+    }
+
     postBudget(budget: Budget) {
         return this.http.post(this.budgetsEndpoint, budget)
                         .pipe(
