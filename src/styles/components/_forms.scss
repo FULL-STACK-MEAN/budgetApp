@@ -163,7 +163,8 @@ select:focus {
         padding: 0.5rem 1rem;
         transition: 300ms all ease-in-out;
 
-        &:hover {
+        &:hover,
+        &.selected {
             cursor: pointer;
             background-color: lightgray;
         }

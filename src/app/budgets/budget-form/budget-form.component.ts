@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Customer } from 'src/app/models/customer.model';
 import { CustomersService } from 'src/app/services/customers.service';
@@ -13,6 +13,8 @@ export class BudgetFormComponent implements OnInit {
     form: FormGroup;
     customers: Array<Customer>;
     customer: Customer;
+    @ViewChildren('searchItem') searchItemsRef: QueryList<any>;
+    selectedItemIndex: number = -1;
 
     constructor(private fb: FormBuilder,
                 private customersService: CustomersService) { }
@@ -34,6 +36,7 @@ export class BudgetFormComponent implements OnInit {
     searchCustomer() {
         this.form.get('name').valueChanges
                              .subscribe(data => {
+                                 this.selectedItemIndex = -1;
                                  if (data !== '') {
                                     this.customersService.findCustomer(data)
                                                         .subscribe((res: any) => {
@@ -47,6 +50,10 @@ export class BudgetFormComponent implements OnInit {
                              })
     }
 
+    selectCustomer() {
+        this.setCustomer(this.customers[this.selectedItemIndex])
+    }
+
     setCustomer(customer: Customer) {
         this.customer = customer;
         this.customers = [];
@@ -56,6 +63,32 @@ export class BudgetFormComponent implements OnInit {
         this.form.get('contactSurname').patchValue(this.customer.contact.surname, {emitEvent: false})
         this.form.get('contactPhone').patchValue(this.customer.contact.phone, {emitEvent: false})
         this.form.get('contactEmail').patchValue(this.customer.contact.email, {emitEvent: false})
+    }
+
+    focusDown() {
+        if(this.selectedItemIndex < this.searchItemsRef.length - 1) {
+            this.selectedItemIndex++;
+            this.searchItemsRef.forEach((elem, i) => {
+                if(this.selectedItemIndex === i) {
+                    elem.nativeElement.classList.add('selected');
+                } else {
+                    elem.nativeElement.classList.remove('selected');
+                }
+            })
+        }
+    }
+
+    focusUp() {
+        if(this.selectedItemIndex > 0) {
+            this.selectedItemIndex--;
+            this.searchItemsRef.forEach((elem, i) => {
+                if(this.selectedItemIndex === i) {
+                    elem.nativeElement.classList.add('selected');
+                } else {
+                    elem.nativeElement.classList.remove('selected');
+                }
+            })
+        }
     }
 
 }
