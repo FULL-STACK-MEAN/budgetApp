@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Budget } from 'src/app/models/budget.model';
 import { Customer } from 'src/app/models/customer.model';
@@ -11,10 +11,10 @@ import { CustomersService } from 'src/app/services/customers.service';
 })
 export class BudgetFormComponent implements OnInit {
 
+    @Input() customer: Customer;
     @Output() budgetEmitter: EventEmitter<any> = new EventEmitter;
     form: FormGroup;
     customers: Array<Customer>;
-    customer: Customer;
     @ViewChildren('searchItem') searchItemsRef: QueryList<any>;
     selectedItemIndex: number = -1;
 
