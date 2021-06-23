@@ -170,3 +170,21 @@ select:focus {
         }
     }
 }
+
+.items {
+    @include flex(row, center, center);
+
+    .item {
+        width: 10%;
+        margin: 0.5rem;
+
+        &:nth-child(1) {
+            width: 40%
+        }
+
+        &:nth-child(5) {
+            width: 10%
+        }
+
+    }
+}

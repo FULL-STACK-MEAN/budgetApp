@@ -1,5 +1,5 @@
 import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Customer } from 'src/app/models/customer.model';
 import { CustomersService } from 'src/app/services/customers.service';
 
@@ -29,8 +29,31 @@ export class BudgetFormComponent implements OnInit {
             contactEmail: '',
             date: (new Date()).toISOString().substring(0,10),
             validUntil: (new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000)).toISOString().substring(0, 10),
+            items: new FormArray([])
         })
         this.searchCustomer();
+        this.addFormItem();
+    }
+
+    newFormItem(): FormGroup {
+        return this.fb.group({
+            article: '',
+            quantity: 0,
+            price: 0,
+            amount: 0
+        })
+    }
+
+    get items(): FormArray {
+        return this.form.get('items') as FormArray; 
+    }
+
+    addFormItem() {
+        this.items.push(this.newFormItem())
+    }
+
+    removeFormItem(i: number) {
+        this.items.removeAt(i);
     }
 
     searchCustomer() {
