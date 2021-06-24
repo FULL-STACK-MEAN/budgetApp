@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Budget } from 'src/app/models/budget.model';
 import { BudgetsService } from 'src/app/services/budgets.service';
@@ -13,6 +13,8 @@ export class BudgetsReportComponent implements OnInit {
 
   dataRoutes: any;
   budgets: Array<Budget>;
+  budgetInEdit: Budget;
+  @ViewChild('overlay') overlayRef: ElementRef;
 
   constructor(private route: ActivatedRoute,
               private toastMessagesService: ToastMessagesService,
@@ -41,6 +43,15 @@ export class BudgetsReportComponent implements OnInit {
             });
             elem.total = total;
         })
+    }
+
+    editBudget(budget: Budget) {
+        this.budgetInEdit = budget;
+        this.overlayRef.nativeElement.style.display = 'block';
+    }
+
+    closeModal() {
+        this.overlayRef.nativeElement.style.display = 'none';
     }
 
 }

@@ -4,11 +4,12 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 10000;
     background-color: rgba(0, 0, 0, 0.6);
-    @include flex(row, center, center);
+    padding: 1.5rem 1rem;
     opacity: 0;
     transition: 600ms opacity linear;
+    display: none;
 
     &.show {
         opacity: 1;
@@ -35,6 +36,14 @@
         .modal-footer {
             padding: 0.5rem 1rem 1rem;
             @include flex(row, space-around, center);
+        }
+
+        &.form {
+            height: calc(100vh - 3rem);
+            width: calc(100% - 2rem);
+            max-width: $laptop-size;
+            margin: 0 auto;
+            overflow: auto;
         }
     }
 }

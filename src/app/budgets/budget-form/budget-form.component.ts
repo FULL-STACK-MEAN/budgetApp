@@ -11,10 +11,11 @@ import { CustomersService } from 'src/app/services/customers.service';
 })
 export class BudgetFormComponent implements OnInit {
 
-    @Input() customer: Customer;
+    @Input() budget: Budget;
     @Output() budgetEmitter: EventEmitter<any> = new EventEmitter;
     form: FormGroup;
     customers: Array<Customer>;
+    customer: Customer;
     @ViewChildren('searchItem') searchItemsRef: QueryList<any>;
     selectedItemIndex: number = -1;
 
@@ -34,8 +35,22 @@ export class BudgetFormComponent implements OnInit {
             items: new FormArray([]),
             total: 0
         })
+        if(this.budget !== undefined) {
+            this.setCustomer(this.budget.customer);
+            this.form.get('date').patchValue(this.budget.date.substring(0,10));
+            this.form.get('validUntil').patchValue(this.budget.validUntil.substring(0,10));
+            this.budget.items.forEach(elem => {
+                this.items.push(this.fb.group({
+                    article: elem.article,
+                    quantity: elem.quantity,
+                    price: elem.price,
+                    amount: elem.amount
+                }))
+            })
+        } else {
+            this.addFormItem();
+        }
         this.searchCustomer();
-        this.addFormItem();
         this.changeFormItems();
     }
 

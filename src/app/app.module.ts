@@ -23,7 +23,7 @@ import { ToastMessagesComponent } from './nav/toast-messages/toast-messages.comp
     HeaderMenuComponent,
     LoaderComponent,
     SideMenuComponent,
-    ToastMessagesComponent
+    ToastMessagesComponent,
   ],
   imports: [
     BrowserModule,

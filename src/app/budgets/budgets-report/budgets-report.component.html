@@ -7,17 +7,29 @@
             <tr>
                 <th>Código</th>
                 <th>Cliente</th>
-                <th>Fecha</th>
-                <th>Importe sin IVA</th>
+                <th class="center">Fecha</th>
+                <th class="right">Importe sin IVA</th>
                 <th></th>
             </tr>
             <tr *ngFor="let budget of budgets">
                 <td>{{budget.code}}</td>
                 <td>{{budget.customer.name}}</td>
-                <td>{{budget.date}}</td>
-                <td>{{budget.total}}</td>
-                <td></td>
+                <td class="center">{{budget.date | date: 'dd/MM/yy'}}</td>
+                <td class="right">{{budget.total | numberEuro: 2: '€'}}</td>
+                <td>
+                    <img src="/assets/img/icons/edit.svg" (click)="editBudget(budget)">
+                </td>
             </tr>
         </table>
+    </div>
+</div>
+<div class="overlay" #overlay appFadeLoad>
+    <div class="modal form">
+        <div class="modal-header">
+            <span (click)="closeModal()">&#x2715;</span>
+        </div>
+        <app-budget-form 
+                   *ngIf="budgetInEdit"
+                   [budget]="budgetInEdit"></app-budget-form>
     </div>
 </div>

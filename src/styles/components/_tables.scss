@@ -20,6 +20,16 @@ table {
         }
     }
 
+    th.center,
+    td.center {
+        text-align: center;
+    }
+
+    th.right,
+    td.right {
+        text-align: right;
+    }
+
     tr:last-child td {
         border-bottom: none;
     }

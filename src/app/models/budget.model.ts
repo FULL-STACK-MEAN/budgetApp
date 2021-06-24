@@ -4,8 +4,13 @@ export interface Budget {
     _id?: string,
     code?: string,
     customer: Customer,
-    date: object,
-    validUntil: object,
-    items: object,
+    date: any,
+    validUntil: any,
+    items: Array<{
+        article: string,
+        quantity: number | null,
+        price: number | null,
+        amount: number | null
+    }>,
     total?: number
 }
