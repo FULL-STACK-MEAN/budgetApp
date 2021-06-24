@@ -45,7 +45,7 @@ export class BudgetFormComponent implements OnInit {
         this.changeFormItems();
     }
 
-    ngAfterViewInit() {
+    ngOnChanges() {
         this.loadBudgetInEdit();
     }
 
