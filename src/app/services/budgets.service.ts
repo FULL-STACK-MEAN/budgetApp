@@ -23,6 +23,15 @@ export class BudgetsService {
                         )
     }
 
+    getBudget(_id: string) {
+        return this.http.get(this.budgetsEndpoint + _id)
+                        .pipe(
+                            map((res: any) => {
+                                return res;
+                            })
+                        )
+    }
+
     postBudget(budget: Budget) {
         return this.http.post(this.budgetsEndpoint, budget)
                         .pipe(

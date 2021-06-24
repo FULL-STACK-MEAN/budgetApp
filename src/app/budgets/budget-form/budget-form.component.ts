@@ -18,6 +18,7 @@ export class BudgetFormComponent implements OnInit {
     customer: Customer;
     @ViewChildren('searchItem') searchItemsRef: QueryList<any>;
     selectedItemIndex: number = -1;
+    inEdition: boolean = false;
 
     constructor(private fb: FormBuilder,
                 private customersService: CustomersService) { }
@@ -36,22 +37,16 @@ export class BudgetFormComponent implements OnInit {
             total: 0
         })
         if(this.budget !== undefined) {
-            this.setCustomer(this.budget.customer);
-            this.form.get('date').patchValue(this.budget.date.substring(0,10));
-            this.form.get('validUntil').patchValue(this.budget.validUntil.substring(0,10));
-            this.budget.items.forEach(elem => {
-                this.items.push(this.fb.group({
-                    article: elem.article,
-                    quantity: elem.quantity,
-                    price: elem.price,
-                    amount: elem.amount
-                }))
-            })
+            this.loadBudgetInEdit();
         } else {
             this.addFormItem();
         }
         this.searchCustomer();
         this.changeFormItems();
+    }
+
+    ngAfterViewInit() {
+        this.loadBudgetInEdit();
     }
 
     newFormItem(): FormGroup {
@@ -87,7 +82,7 @@ export class BudgetFormComponent implements OnInit {
                                                             console.log(err);
                                                         })
                                  } else {
-                                     this.customers = [];
+                                    this.customers = [];
                                  }
                              })
     }
@@ -163,6 +158,21 @@ export class BudgetFormComponent implements OnInit {
             items: this.form.get('items').value,
         }
         this.budgetEmitter.emit(budget);
+    }
+
+    loadBudgetInEdit() {
+        this.items.clear();
+        this.setCustomer(this.budget.customer);
+        this.form.get('date').patchValue(this.budget.date.substring(0,10));
+        this.form.get('validUntil').patchValue(this.budget.validUntil.substring(0,10));
+        this.budget.items.forEach(elem => {
+            this.items.push(this.fb.group({
+                article: elem.article,
+                quantity: elem.quantity,
+                price: elem.price,
+                amount: elem.amount
+            }))
+        })
     }
 
 }
