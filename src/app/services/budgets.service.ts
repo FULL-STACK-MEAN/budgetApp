@@ -41,5 +41,14 @@ export class BudgetsService {
                         )
     }
 
+    putBudget(_id: string, budget: Budget) {
+        return this.http.put(this.budgetsEndpoint + _id, budget)
+                        .pipe(
+                            map((res: any) => {
+                                return res;
+                            })
+                        )
+    }
+
 
 }

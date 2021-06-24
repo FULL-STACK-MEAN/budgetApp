@@ -13,6 +13,7 @@ export class BudgetFormComponent implements OnInit {
 
     @Input() budget: Budget;
     @Output() budgetEmitter: EventEmitter<any> = new EventEmitter;
+    @Output() cancelEmitter: EventEmitter<any> = new EventEmitter;
     form: FormGroup;
     customers: Array<Customer>;
     customer: Customer;
@@ -22,6 +23,10 @@ export class BudgetFormComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
                 private customersService: CustomersService) { }
+
+    ngOnChanges() {
+        this.loadBudgetInEdit();
+    }
 
     ngOnInit(): void {
         this.form = this.fb.group({
@@ -43,10 +48,6 @@ export class BudgetFormComponent implements OnInit {
         }
         this.searchCustomer();
         this.changeFormItems();
-    }
-
-    ngOnChanges() {
-        this.loadBudgetInEdit();
     }
 
     newFormItem(): FormGroup {
@@ -162,17 +163,21 @@ export class BudgetFormComponent implements OnInit {
 
     loadBudgetInEdit() {
         this.items.clear();
-        this.setCustomer(this.budget.customer);
-        this.form.get('date').patchValue(this.budget.date.substring(0,10));
-        this.form.get('validUntil').patchValue(this.budget.validUntil.substring(0,10));
-        this.budget.items.forEach(elem => {
-            this.items.push(this.fb.group({
+        this.setCustomer(this.budget?.customer);
+        this.form.get('date').patchValue(this.budget?.date.substring(0,10));
+        this.form.get('validUntil').patchValue(this.budget?.validUntil.substring(0,10));
+        this.budget?.items.forEach(elem => {
+            this.items?.push(this.fb.group({
                 article: elem.article,
                 quantity: elem.quantity,
                 price: elem.price,
                 amount: elem.amount
             }))
         })
+    }
+
+    cancel() {
+        this.cancelEmitter.emit()
     }
 
 }

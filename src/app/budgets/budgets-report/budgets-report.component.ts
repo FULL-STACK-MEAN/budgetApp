@@ -59,4 +59,15 @@ export class BudgetsReportComponent implements OnInit {
         this.overlayRef.nativeElement.style.display = 'none';
     }
 
+    submitBudget(event: Budget) {
+        this.budgetsService.putBudget(this.budgetInEdit._id, event)
+                           .subscribe((res: any) => {
+                               this.loadBudgets();
+                               this.closeModal();
+                               this.toastMessagesService.setToastMessage('success', res.message);
+                           }, (err: any) => {
+                                this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos')
+                           })
+    }
+
 }

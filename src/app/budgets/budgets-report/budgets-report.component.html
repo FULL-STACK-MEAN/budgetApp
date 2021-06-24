@@ -30,6 +30,8 @@
         </div>
         <app-budget-form 
                    *ngIf="budgetInEdit"
-                   [budget]="budgetInEdit"></app-budget-form>
+                   [budget]="budgetInEdit"
+                   (budgetEmitter)="submitBudget($event)"
+                   (cancelEmitter)="closeModal()"></app-budget-form>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-    <p>Presupuesto {{budget?.code}}</p>
+    <p *ngIf="budget">Presupuesto {{budget?.code}}</p>
     <p class="form-title">Cliente</p>
     <div class="row">
         <div class="col-50 p-r">
@@ -100,7 +100,8 @@
         </div>
     </div>
     <div class="flex j-end a-center m-t">
-        <button class="outline m-r" type="button" routerLink="/budgets">Cancelar</button>
+        <button *ngIf="budget" class="outline m-r" type="button" (click)="cancel()">Cancelar</button>
+        <button *ngIf="!budget" class="outline m-r" type="button" routerLink="/budgets">Cancelar</button>
         <button type="button" (click)="submitBudget()">Enviar</button>
     </div>
 </form>

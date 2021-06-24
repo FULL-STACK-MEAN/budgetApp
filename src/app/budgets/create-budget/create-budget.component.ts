@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Budget } from 'src/app/models/budget.model';
 import { BudgetsService } from 'src/app/services/budgets.service';
+import { ToastMessagesService } from 'src/app/services/toast-messages.service';
 
 @Component({
   selector: 'app-create-budget',
@@ -13,6 +14,8 @@ export class CreateBudgetComponent implements OnInit {
   dataRoutes: any;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
+              private toastMessagesService: ToastMessagesService,
               private budgetsService: BudgetsService) { }
 
   ngOnInit(): void {
@@ -22,9 +25,10 @@ export class CreateBudgetComponent implements OnInit {
   submitBudget(event: Budget) {
       this.budgetsService.postBudget(event)
                          .subscribe((res: any) => {
-                             console.log(res);
+                             this.router.navigate(['/budgets']);
+                             this.toastMessagesService.setToastMessage('success', res.message);
                          }, (err: any) => {
-                             console.log(err);
+                            this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos')
                          })
   }
 
