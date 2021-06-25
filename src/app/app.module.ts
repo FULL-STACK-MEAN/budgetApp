@@ -13,6 +13,7 @@ import { HeaderMenuComponent } from './nav/header-menu/header-menu.component';
 import { LoaderComponent } from './nav/loader/loader.component';
 import { SideMenuComponent } from './nav/side-menu/side-menu.component';
 import { ToastMessagesComponent } from './nav/toast-messages/toast-messages.component';
+import { UserProfileComponent } from './nav/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ToastMessagesComponent } from './nav/toast-messages/toast-messages.comp
     LoaderComponent,
     SideMenuComponent,
     ToastMessagesComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

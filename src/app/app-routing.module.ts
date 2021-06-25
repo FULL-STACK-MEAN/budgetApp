@@ -5,6 +5,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SalesGuard } from './guards/sales.guard';
 import { UsersGuard } from './guards/users.guard';
 import { HomeComponent } from './home/home.component';
+import { UserProfileComponent } from './nav/user-profile/user-profile.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -37,6 +38,14 @@ const routes: Routes = [
       absolutePath: '/budgets'
     }
   },
+  {
+      path: 'user-profile/:_id',
+      component: UserProfileComponent,
+      data: {
+          title: 'Mi cuenta',
+          absolutePath: '/user-profile'
+      }
+  }
 ];
 
 @NgModule({

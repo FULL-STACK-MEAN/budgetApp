@@ -1,3 +1,18 @@
 <nav>
-    <button (click)="logOut()">Cerrar sesión</button>
+    <div class="user">
+        {{user.name}}
+        <div class="dropdown">
+            <div class="menu">
+                <div class="item" routerLink="/user-profile/{{user._id}}">
+                    <img src="/assets/img/icons/user.svg" alt="">
+                    Mi cuenta
+                </div>
+                <hr>
+                <div class="item" (click)="logOut()">
+                    <img src="/assets/img/icons/arrow-out.svg" alt="">
+                    Cerrar sesión
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
