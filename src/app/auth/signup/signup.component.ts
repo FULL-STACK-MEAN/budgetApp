@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -33,7 +34,7 @@ export class SignupComponent implements OnInit {
   }
 
   signUp() {
-    const user = {
+    const user: User = {
       name: this.form.get('name').value,
       surname: this.form.get('surname').value,
       email: this.form.get('email').value,

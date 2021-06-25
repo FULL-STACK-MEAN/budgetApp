@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/models/user.model';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UsersService } from 'src/app/services/users.service';
 export class UsersReportComponent implements OnInit {
 
   dataRoutes: any;
-  users: any;
+  users: Array<User>;
   userUpdated: any = {
     _id: '',
     role: ''

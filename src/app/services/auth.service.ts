@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) { }
 
-  signUp(user) {
+  signUp(user: User) {
     return this.http.post(this.authEndpoint + 'signup', user)
                     .pipe(
                       map((res: any) => {
