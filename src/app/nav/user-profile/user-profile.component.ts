@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/users.service';
 
@@ -9,13 +10,16 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  dataRoutes: any;
   _id: string;
   user: any;
 
   constructor(private usersService: UsersService,
+              private route: ActivatedRoute,
               private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.dataRoutes = this.route.pathFromRoot;
     this.authService.getUserState()
                     .subscribe((data: any) => {
                       this._id = data._id;

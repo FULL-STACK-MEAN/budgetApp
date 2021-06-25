@@ -14,6 +14,7 @@ import { LoaderComponent } from './nav/loader/loader.component';
 import { SideMenuComponent } from './nav/side-menu/side-menu.component';
 import { ToastMessagesComponent } from './nav/toast-messages/toast-messages.component';
 import { UserProfileComponent } from './nav/user-profile/user-profile.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserProfileComponent } from './nav/user-profile/user-profile.component'
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
