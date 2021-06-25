@@ -39,7 +39,7 @@ const routes: Routes = [
     }
   },
   {
-      path: 'user-profile/:_id',
+      path: 'user-profile',
       component: UserProfileComponent,
       data: {
           title: 'Mi cuenta',

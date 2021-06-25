@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,15 @@ export class UsersService {
 
   updateUserRole(_id: string, role: string) {
     return this.http.put(this.usersEndpoint + 'role/' + _id, {role})
+                    .pipe(
+                      map( (res: any) => {
+                        return res;
+                      })
+                    )
+  }
+
+  updateUser(_id: string, user: User) {
+    return this.http.put(this.usersEndpoint + _id, user)
                     .pipe(
                       map( (res: any) => {
                         return res;
