@@ -118,6 +118,20 @@ input {
     &[type="date"] {
         font-size: 0.75rem;
     }
+
+    &.right {
+        text-align: right;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &[type=number] {
+        -moz-appearance: textfield;
+    }
 }
 
 select {
@@ -179,7 +193,11 @@ select:focus {
         margin: 0.5rem;
 
         &:nth-child(1) {
-            width: 40%
+            width: 50%
+        }
+
+        &:nth-child(4) {
+            width: 20%
         }
 
         &:nth-child(5) {

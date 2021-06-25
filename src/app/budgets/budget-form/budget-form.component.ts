@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Budget } from 'src/app/models/budget.model';
 import { Customer } from 'src/app/models/customer.model';
@@ -22,10 +22,14 @@ export class BudgetFormComponent implements OnInit {
     inEdition: boolean = false;
 
     constructor(private fb: FormBuilder,
+                private cd: ChangeDetectorRef,
                 private customersService: CustomersService) { }
 
+
     ngOnChanges() {
-        this.loadBudgetInEdit();
+        if(this.form !== undefined) {
+            this.loadBudgetInEdit();
+        }
     }
 
     ngOnInit(): void {
@@ -48,6 +52,10 @@ export class BudgetFormComponent implements OnInit {
         }
         this.searchCustomer();
         this.changeFormItems();
+    }
+
+    update() {
+        this.cd.detectChanges();
     }
 
     newFormItem(): FormGroup {
@@ -174,6 +182,7 @@ export class BudgetFormComponent implements OnInit {
                 amount: elem.amount
             }))
         })
+        this.setTotal();
     }
 
     cancel() {

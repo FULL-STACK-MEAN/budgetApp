@@ -77,13 +77,13 @@
                     <input type="text" formControlName="article">
                 </div>
                 <div class="item">
-                    <input type="number" formControlName="quantity">
+                    <input class="right" type="number" formControlName="quantity">
                 </div>
                 <div class="item">
-                    <input type="number" formControlName="price">
+                    <input class="right" type="number" formControlName="price">
                 </div>
                 <div class="item">
-                    <input type="number" formControlName="amount" readonly>
+                    <input class="right" type="text" readonly [value]="item.get('amount').value | numberEuro: 2: '€'">
                 </div>
                 <div class="item flex j-end a-center">
                     <button type="button" class="form-item" (click)="removeFormItem(i)">-</button>
@@ -96,7 +96,7 @@
     <div class="row">
         <div class="col-75"></div>
         <div class="col-25">
-            <input type="number" formControlName="total" readonly>
+            <input type="text" class="right" readonly [value]="form.controls.total.value | numberEuro: 2: '€'">
         </div>
     </div>
     <div class="flex j-end a-center m-t">
