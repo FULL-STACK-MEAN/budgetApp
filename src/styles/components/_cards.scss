@@ -27,4 +27,19 @@
 
     }
 
+    &.twice {
+        grid-column: 1 / span 2;
+    }
+
+    &.triple {
+        grid-column: 1 / span 3;
+    }
+
+    @media (max-width: $tablet-size) {
+        &.twice,
+        &.triple {
+            grid-column: auto;
+        }
+    }
+
 }

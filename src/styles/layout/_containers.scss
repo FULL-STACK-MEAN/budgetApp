@@ -17,6 +17,31 @@
         justify-content: center;
     }
 
+    .grid-50 {
+        display: grid;
+        grid-template-columns: calc(50% - 0.5rem) calc(50% - 0.5rem);
+        grid-template-rows: max-content;
+        grid-gap: 1rem;
+        justify-content: center;
+    }
+
+    .grid-33 {
+        display: grid;
+        grid-template-columns: calc(33.3333% - 0.3333rem) calc(33.3333% - 0.3333rem) calc(33.3333% - 0.3333rem);
+        grid-template-rows: max-content;
+        grid-gap: 1rem;
+        justify-content: center;
+    }
+
+    @media (max-width: $tablet-size) {
+        & {
+            .grid-50,
+            .grid-33 {
+                grid-template-columns: 100%;
+            }
+        }
+    }
+
 }
 
 .loader-container {
