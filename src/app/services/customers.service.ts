@@ -13,8 +13,8 @@ export class CustomersService {
 
   constructor(private http: HttpClient) { }
 
-  getCustomers() {
-      return this.http.get(this.customersEndpoint)
+  getCustomers(skip: number, limit: number) {
+      return this.http.get(this.customersEndpoint + skip + '/' + limit)
                       .pipe(
                         map((res: any) => {
                             return res;

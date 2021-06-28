@@ -12,6 +12,9 @@ import { ToastMessagesService } from 'src/app/services/toast-messages.service';
 export class CustomersReportComponent implements OnInit {
 
   dataRoutes: any;
+  skip: number = 0;
+  limit: number = 5;
+  totalCustomers: number;
   customers: Array<Customer>;
 
   constructor(private route: ActivatedRoute,
@@ -24,8 +27,9 @@ export class CustomersReportComponent implements OnInit {
   }
 
   loadCustomers(): void {
-      this.customersService.getCustomers()
+      this.customersService.getCustomers(this.skip, this.limit)
                            .subscribe((res: any) => {
+                               this.totalCustomers = res.totalCustomers;
                                this.customers = res.customers;
                            }, (err: any) => {
                                if (err.error?.message) {
@@ -34,6 +38,16 @@ export class CustomersReportComponent implements OnInit {
                                    this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos')
                                }
                            })
+  }
+
+  prev() {
+      this.skip -= this.limit;
+      this.loadCustomers();
+  }
+
+  next() {
+      this.skip += this.limit;
+      this.loadCustomers();
   }
 
 }

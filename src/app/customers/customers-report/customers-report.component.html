@@ -19,5 +19,9 @@
                 </td>
             </tr>
         </table>
+        <div class="flex j-end a-center">
+            <button *ngIf="skip > 0" (click)="prev()">Ant</button>
+            <button *ngIf="skip < totalCustomers - limit" (click)="next()"class="m-l-small">Sig</button>
+        </div>
     </div>
 </div>
