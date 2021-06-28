@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../models/customer.model';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,22 @@ import { map } from 'rxjs/operators';
 export class CustomersService {
 
   private customersEndpoint = environment.URLAPIserver + 'customers/';
+
+  private pagesState: any = {
+      skip: 0,
+      limit: 5
+  }
+
+  private pagesStateSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this.pagesState);
+
+  getPagesState(): Observable<any> {
+      return this.pagesStateSubject.asObservable();
+  }
+
+  setPagesState(skip: number, limit: number): void {
+      this.pagesState = {skip, limit};
+      this.pagesStateSubject.next(this.pagesState);
+  }
 
   constructor(private http: HttpClient) { }
 

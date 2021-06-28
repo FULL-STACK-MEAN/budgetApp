@@ -12,8 +12,8 @@ import { ToastMessagesService } from 'src/app/services/toast-messages.service';
 export class CustomersReportComponent implements OnInit {
 
   dataRoutes: any;
-  skip: number = 0;
-  limit: number = 5;
+  skip: number;
+  limit: number;
   totalCustomers: number;
   customers: Array<Customer>;
 
@@ -23,6 +23,11 @@ export class CustomersReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataRoutes = this.route.pathFromRoot;
+    this.customersService.getPagesState()
+                         .subscribe(data => {
+                             this.skip = data.skip,
+                             this.limit = data.limit
+                         })
     this.loadCustomers();
   }
 
@@ -42,11 +47,13 @@ export class CustomersReportComponent implements OnInit {
 
   prev() {
       this.skip -= this.limit;
+      this.customersService.setPagesState(this.skip, this.limit);
       this.loadCustomers();
   }
 
   next() {
       this.skip += this.limit;
+      this.customersService.setPagesState(this.skip, this.limit);
       this.loadCustomers();
   }
 
