@@ -21,6 +21,8 @@ export class UserProfileComponent implements OnInit {
   form: FormGroup;
   uploader: FileUploader;
   avatarEndpoint: string = environment.URLAPIserver + 'users/avatar';
+  image: string; // Propiedad con ese nombre para FileUplouder
+  imageSrc: any;
 
   constructor(private usersService: UsersService,
               private route: ActivatedRoute,
@@ -41,15 +43,27 @@ export class UserProfileComponent implements OnInit {
     this.authService.getUserState()
                     .subscribe((data: any) => {
                       this._id = data._id;
+                      
                       this.usersService.getUser(this._id)
                                        .subscribe((res: any) => {
                                           this.user = res.user;
+                                          this.imageSrc = environment.URLAPIserver + 'avatars/' + this.user.avatarFileName;
                                           this.form.patchValue(this.user);
                                        }, (err: any) => {
                                           console.log(err);
                                        })
                     })
-    this.uploader = new FileUploader({url: this.avatarEndpoint})
+    this.uploader = new FileUploader({url: this.avatarEndpoint});
+    this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
+        form.append('image', this.image);
+    }
+    this.uploader.onSuccessItem = (item, res, status, headers) => {
+        const resJS = JSON.parse(res);
+        this.toastMessagesService.setToastMessage('success', resJS.message);
+    }
+    this.uploader.onErrorItem = (item, res, status, headers) => {
+        this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible');
+    }
   }
 
   updateUser() {
@@ -71,6 +85,19 @@ export class UserProfileComponent implements OnInit {
                                 this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos')
                             }
                        })
+  }
+
+  sendAvatar(event: any) {
+      if(event.target.files.length > 0) {
+          const file = event.target.files[0];
+          this.image = this._id + '.' + file.name.split('.')[file.name.split('.').length - 1];
+          const reader = new FileReader();
+          reader.onload = () => {
+              this.imageSrc = reader.result;
+          }
+          reader.readAsDataURL(file);
+          this.uploader.uploadAll();
+      }
   }
 
 }

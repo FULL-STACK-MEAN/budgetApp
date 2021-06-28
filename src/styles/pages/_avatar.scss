@@ -7,6 +7,9 @@
         height: 200px;
         border-radius: 50%;
         border: 6px solid $primary-font-color;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
     }
 
     input {
