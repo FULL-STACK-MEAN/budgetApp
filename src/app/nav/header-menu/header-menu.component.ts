@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header-menu',
@@ -9,12 +10,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderMenuComponent implements OnInit {
 
   user: any;
+  imageSrc: string;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
       this.authService.getUserState()
                       .subscribe(data => {
                           this.user = data;
+                          this.imageSrc = environment.URLAPIserver + 'avatars/' + data.avatarFileName;
                       })
   }
 

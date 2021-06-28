@@ -59,6 +59,7 @@ export class UserProfileComponent implements OnInit {
     }
     this.uploader.onSuccessItem = (item, res, status, headers) => {
         const resJS = JSON.parse(res);
+        this.authService.setUserStateAvatar(resJS.userSaved.avatarFileName);
         this.toastMessagesService.setToastMessage('success', resJS.message);
     }
     this.uploader.onErrorItem = (item, res, status, headers) => {
@@ -90,7 +91,7 @@ export class UserProfileComponent implements OnInit {
   sendAvatar(event: any) {
       if(event.target.files.length > 0) {
           const file = event.target.files[0];
-          this.image = this._id + '.' + file.name.split('.')[file.name.split('.').length - 1];
+          this.image = this._id + new Date().getTime() + '.' + file.name.split('.')[file.name.split('.').length - 1];
           const reader = new FileReader();
           reader.onload = () => {
               this.imageSrc = reader.result;

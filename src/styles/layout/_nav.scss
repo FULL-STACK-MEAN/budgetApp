@@ -8,10 +8,22 @@ nav {
 
     .user {
         position: relative;
+        @include flex(row, flex-start, center);
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid $primary-font-color;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            margin-right: 0.5rem;
+        }
 
         .dropdown {
             position: absolute;
-            top: 50px;
+            top: 70px;
             right: 0;
             min-width: 240px;
             z-index: 100;

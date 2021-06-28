@@ -16,7 +16,8 @@ export class AuthService {
   private userState = {
     _id: '',
     name: '',
-    role: ''
+    role: '',
+    avatarFileName: ''
   }
 
   private userStateSubject: BehaviorSubject<any> = new BehaviorSubject<any>(this.userState);
@@ -28,6 +29,11 @@ export class AuthService {
   setUserState(userState: any): void {
     this.userState = userState;
     this.userStateSubject.next(this.userState);
+  }
+
+  setUserStateAvatar(avatarFileName: string) {
+      this.userState.avatarFileName = avatarFileName;
+      this.userStateSubject.next(this.userState);
   }
 
   constructor(private http: HttpClient,
@@ -71,7 +77,9 @@ export class AuthService {
                       console.log(res);
                       this.setUserState({
                         _id: '',
-                        name: ''
+                        name: '',
+                        role: '',
+                        avatarFileName: ''
                       })
                       this.router.navigate(['/login']);
                     }, (err: any) => {
