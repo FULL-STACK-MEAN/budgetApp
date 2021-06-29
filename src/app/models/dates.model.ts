@@ -8,7 +8,7 @@ export class Dates {
         let secondLastMonthYear = currentMonthYear;
         if (currentMonth === 1) {
             secondLastMonth = 11;
-            secondLastMonthYear = currentMonthYear - 1;
+            secondLastMonthYear = currentMonthYear - 1; // algo...
         }
         if (currentMonth === 0) {
             lastMonth = 11;
