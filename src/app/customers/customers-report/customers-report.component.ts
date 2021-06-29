@@ -45,14 +45,8 @@ export class CustomersReportComponent implements OnInit {
                            })
   }
 
-  prev() {
-      this.skip -= this.limit;
-      this.customersService.setPagesState(this.skip, this.limit);
-      this.loadCustomers();
-  }
-
-  next() {
-      this.skip += this.limit;
+  changePage(e) {
+      this.skip = this.skip + this.limit * e;
       this.customersService.setPagesState(this.skip, this.limit);
       this.loadCustomers();
   }

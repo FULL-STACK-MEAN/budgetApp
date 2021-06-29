@@ -26,7 +26,8 @@
                 <button type="submit" 
                         class="outline"
                         *ngIf="form.valid">
-                    Enviar
+                        <span [appLoading]="{showLoading: true, display: 'inline'}">Espere...</span>
+                        <span [appLoading]="{showLoading: false, display: 'inline'}">Enviar</span>  
                 </button>
             </div>
         </form>

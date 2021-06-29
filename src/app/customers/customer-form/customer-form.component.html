@@ -92,6 +92,9 @@
     <div class="flex j-end a-center m-t">
         <button class="outline m-r-small" type="button" routerLink="/customers">Cancelar</button>
         <button *ngIf="form.invalid" type="button" (click)="setValidation()">Enviar</button>
-        <button *ngIf="form.valid" type="button" (click)="submitCustomer()">Enviar</button>
+        <button *ngIf="form.valid" type="button" (click)="submitCustomer()">
+            <span [appLoading]="{showLoading: true, display: 'inline'}">Espere...</span>
+            <span [appLoading]="{showLoading: false, display: 'inline'}">Enviar</span>  
+        </button>
     </div>
 </form>

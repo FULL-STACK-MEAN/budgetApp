@@ -36,6 +36,16 @@ export class AuthService {
       this.userStateSubject.next(this.userState);
   }
 
+  private sendingSubject: BehaviorSubject<any> = new BehaviorSubject<any>({sending: false});
+
+  getSending(): Observable<any> {
+      return this.sendingSubject.asObservable();
+  }
+
+  setSending(sending: boolean): void {
+      this.sendingSubject.next({sending: sending});
+  }
+
   constructor(private http: HttpClient,
               private router: Router) { }
 

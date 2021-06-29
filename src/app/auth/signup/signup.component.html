@@ -42,7 +42,8 @@
                 <button type="submit" 
                         class="outline"
                         *ngIf="form.valid && this.form.get('password').value === this.form.get('checkPassword').value">
-                    Registrar
+                        <span [appLoading]="{showLoading: true, display: 'inline'}">Espere...</span>
+                        <span [appLoading]="{showLoading: false, display: 'inline'}">Registrar</span>  
                 </button>
             </div>
         </form>

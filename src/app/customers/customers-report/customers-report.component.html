@@ -10,7 +10,7 @@
                 <th>Localidad</th>
                 <th></th>
             </tr>
-            <tr *ngFor="let customer of customers">
+            <tr *ngFor="let customer of customers" [appLoading]="{showLoading: false, display: 'table-row'}">
                 <td>{{customer.name}}</td>
                 <td>{{customer.cif}}</td>
                 <td>{{customer.city}}</td>
@@ -19,9 +19,12 @@
                 </td>
             </tr>
         </table>
+        <div [appLoading]="{showLoading: true, display: 'block'}">
+            Espere...
+        </div>
         <div class="flex j-end a-center">
-            <button *ngIf="skip > 0" (click)="prev()">Ant</button>
-            <button *ngIf="skip < totalCustomers - limit" (click)="next()"class="m-l-small">Sig</button>
+            <button *ngIf="skip > 0" (click)="changePage(-1)">Ant</button>
+            <button *ngIf="skip < totalCustomers - limit" (click)="changePage(1)"class="m-l-small">Sig</button>
         </div>
     </div>
 </div>

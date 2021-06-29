@@ -4,12 +4,14 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { RouterModule } from '@angular/router';
 import { NumberEuroPipe } from './pipes/number-euro.pipe';
 import { FadeLoadDirective } from './directives/fade-load.directive';
+import { LoadingDirective } from './directives/loading.directive';
 
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
     NumberEuroPipe,
-    FadeLoadDirective
+    FadeLoadDirective,
+    LoadingDirective
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { FadeLoadDirective } from './directives/fade-load.directive';
   exports: [
     BreadcrumbsComponent,
     NumberEuroPipe,
-    FadeLoadDirective
+    FadeLoadDirective,
+    LoadingDirective
   ]
 })
 export class SharedModule { }
