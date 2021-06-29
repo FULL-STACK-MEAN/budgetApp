@@ -34,7 +34,7 @@ const routes: Routes = [
     loadChildren: () => import('./budgets/budgets.module').then(m => m.BudgetsModule),
     // canActivate: [SalesGuard],
     data: {
-      title: 'Presupuestos',
+      title: 'Dashboard',
       absolutePath: '/budgets'
     }
   },
