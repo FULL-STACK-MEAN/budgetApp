@@ -19,8 +19,13 @@
                 </td>
             </tr>
         </table>
-        <div [appLoading]="{showLoading: true, display: 'block'}">
-            Espere...
+        <div class="spinner" [appLoading]="{showLoading: true, display: 'block'}">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
         </div>
         <div class="flex j-end a-center">
             <button *ngIf="skip > 0" (click)="changePage(-1)">Ant</button>
