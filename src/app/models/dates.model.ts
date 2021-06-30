@@ -1,4 +1,19 @@
 export class Dates {
+
+    static monthNamesES = [
+        'Enero',
+        'Febrero',
+        'Marzo',
+        'Abril',
+        'Mayo',
+        'Junio',
+        'Julio',
+        'Agosto',
+        'Septiembre',
+        'Noviembre',
+        'Diciembre'
+    ]
+
     static getDates() {
         let currentMonth = new Date().getMonth();
         let lastMonth = currentMonth - 1;
@@ -37,5 +52,9 @@ export class Dates {
             firstDay: days[0],
             lastDay: days[days.length - 1]
         }
+    }
+
+    static getMonthNameES(day) {
+        return this.monthNamesES[day.getMonth()] + ' ' + day.getFullYear();
     }
 }

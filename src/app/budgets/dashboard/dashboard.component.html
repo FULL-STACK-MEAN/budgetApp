@@ -10,7 +10,10 @@
             </div>
         </div>
         <div class="card">
-
+            <p>Top 5</p>
+            <div *ngIf="pieChart">
+                <canvas id="customersChart">{{pieChart}}</canvas>
+            </div>
         </div>
     </div>
 </div>
