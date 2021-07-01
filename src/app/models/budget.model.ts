@@ -12,5 +12,6 @@ export interface Budget {
         price: number | null,
         amount: number | null
     }>,
-    total?: number
+    total?: number,
+    idSalesUser: string
 }

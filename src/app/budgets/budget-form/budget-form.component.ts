@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, Quer
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Budget } from 'src/app/models/budget.model';
 import { Customer } from 'src/app/models/customer.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { CustomersService } from 'src/app/services/customers.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class BudgetFormComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
                 private cd: ChangeDetectorRef,
-                private customersService: CustomersService) { }
+                private customersService: CustomersService,
+                private authService: AuthService) { }
 
 
     ngOnChanges() {
@@ -160,11 +162,17 @@ export class BudgetFormComponent implements OnInit {
     }
 
     submitBudget() {
+        let userId;
+        this.authService.getUserState()
+                        .subscribe(data => {
+            userId = data._id
+        })
         const budget: Budget = {
             customer: this.customer,
             date: new Date(this.form.get('date').value),
             validUntil: new Date(this.form.get('validUntil').value),
             items: this.form.get('items').value,
+            idSalesUser: userId
         }
         this.budgetEmitter.emit(budget);
     }
