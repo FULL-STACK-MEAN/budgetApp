@@ -41,6 +41,15 @@ export class BudgetsService {
                         )
     }
 
+    getSendBudgetEmail(_id: string) {
+        return this.http.get(this.budgetsEndpoint + 'sendemail/' + _id)
+                        .pipe(
+                            map((res: any) => {
+                                return res;
+                            })
+                        )
+    }
+
     postBudget(budget: Budget) {
         return this.http.post(this.budgetsEndpoint, budget)
                         .pipe(

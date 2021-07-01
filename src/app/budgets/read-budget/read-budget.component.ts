@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Budget } from 'src/app/models/budget.model';
@@ -23,6 +24,7 @@ export class ReadBudgetComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private toastMessagesService: ToastMessagesService,
               private budgetsService: BudgetsService,
+              private http: HttpClient,
               private usersService: UsersService) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class ReadBudgetComponent implements OnInit {
     this.budgetsService.getBudget(this._id)
                         .subscribe((res: any) => {
                             this.budget = res.budget;
-                            //this.pathPDF = environment.URLAPIserver + 'budgetspdf/' + this.budget.code + '.pdf';
+                            this.generatePDF();
                             this.usersService.getUser(res.budget.idSalesUser)
                                              .subscribe((res: any) => {
                                                  this.user = res.user;
@@ -50,6 +52,24 @@ export class ReadBudgetComponent implements OnInit {
       this.budgetsService.getPDFBudget(this._id)
                         .subscribe((res: any) => {
                             this.pathPDF = environment.URLAPIserver + 'budgetspdf/' + this.budget.code + '.pdf';
+                            // let headers = new HttpHeaders();
+                            // headers = headers.set('Accept', 'application/pdf');
+                            // this.http.get(environment.URLAPIserver + 'budgetspdf/' + this.budget.code + '.pdf', { headers: headers, responseType: 'blob' })
+                            //          .subscribe((res: any) => {
+                            //              console.log(res)
+                            //          }, (err: any) => {
+                            //              console.log(err)
+                            //              //this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos');
+                            //          })
+                        }, (err: any) => {
+                            this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos');
+                        })
+  }
+
+  sendBudgetEmail() {
+      this.budgetsService.getSendBudgetEmail(this._id)
+                        .subscribe((res: any) => {
+                            console.log(res);
                         }, (err: any) => {
                             this.toastMessagesService.setToastMessage('warning', 'El servidor no se encuentra disponible en estos momentos');
                         })
