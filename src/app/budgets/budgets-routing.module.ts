@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BudgetsReportComponent } from './budgets-report/budgets-report.component';
 import { CreateBudgetComponent } from './create-budget/create-budget.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReadBudgetComponent } from './read-budget/read-budget.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,14 @@ const routes: Routes = [
         data: {
             title: 'Nuevo presupuesto',
             absolutePath: '/budgets/create-budget'
+        }
+    },
+    {
+        path: 'read-budget/:_id',
+        component: ReadBudgetComponent,
+        data: {
+            title: 'Visualizar presupuesto',
+            absolutePath: '/budgets/read-budget/:_id'
         }
     }
 ];

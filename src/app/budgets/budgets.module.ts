@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { BudgetFormComponent } from './budget-form/budget-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ReadBudgetComponent } from './read-budget/read-budget.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BudgetsReportComponent,
     CreateBudgetComponent,
     BudgetFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    ReadBudgetComponent
   ],
   imports: [
     CommonModule,

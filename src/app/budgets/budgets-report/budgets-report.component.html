@@ -17,7 +17,8 @@
                 <td class="center">{{budget.date | date: 'dd/MM/yy'}}</td>
                 <td class="right">{{budget.total | numberEuro: 2: '€'}}</td>
                 <td>
-                    <img src="/assets/img/icons/edit.svg" (click)="editBudget(budget._id)">
+                    <img title="Visualizar presupuesto" src="/assets/img/icons/eye.svg" routerLink="/budgets/read-budget/{{budget._id}}">
+                    <img title="Editar presupuesto" class="m-l-small" src="/assets/img/icons/edit.svg" (click)="editBudget(budget._id)">
                 </td>
             </tr>
         </table>
