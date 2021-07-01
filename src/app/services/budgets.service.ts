@@ -32,6 +32,15 @@ export class BudgetsService {
                         )
     }
 
+    getPDFBudget(_id: string) {
+        return this.http.get(this.budgetsEndpoint + 'createpdf/' + _id)
+                        .pipe(
+                            map((res: any) => {
+                                return res;
+                            })
+                        )
+    }
+
     postBudget(budget: Budget) {
         return this.http.post(this.budgetsEndpoint, budget)
                         .pipe(
