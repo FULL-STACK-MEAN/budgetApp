@@ -46,15 +46,17 @@
             <p style="margin-top: 0.2cm">Para mayor información contacte con {{user?.name}} {{user?.surname}} en el teléfono {{user?.phone}}</p>
         </div>
         <div class="flex j-center a-center m-t">
-            <a [href]="pathPDF" [target]="'_blank'">
-                <button class="outline icon">
+            <!-- <a [href]="pathPDF" [target]="'_blank'"> -->
+                <button class="outline icon" (click)="generatePDF()">
                     <img src="/assets/img/icons/file-text.svg" alt="">
-                    Descargar PDF
+                    <span *ngIf="!generatingPDF">Descargar PDF</span>
+                    <span *ngIf="generatingPDF">Preparando PDF, espere...</span>
                 </button>
-            </a>
+            <!-- </a> -->
             <button type="button"  class="outline icon m-l-small"  (click)="sendBudgetEmail()">
                 <img src="/assets/img/icons/mail.svg" alt="">
-                Enviar por correo electrónico
+                <span *ngIf="!sendingEmail">Enviar email</span>
+                <span *ngIf="sendingEmail">Enviando email, espere...</span>
             </button>
         </div>
     </div>
