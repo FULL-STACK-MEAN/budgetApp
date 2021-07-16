@@ -50,6 +50,24 @@ export class BudgetsService {
                         )
     }
 
+    getAggCustomers() {
+        return this.http.get(this.budgetsEndpoint + 'agg-customers')
+                        .pipe(
+                            map((res: any) => {
+                                return res;
+                            })
+                        )    
+    }
+
+    getAggMonths() {
+        return this.http.get(this.budgetsEndpoint + 'agg-months')
+                        .pipe(
+                            map((res: any) => {
+                                return res;
+                            })
+                        )    
+    }
+
     postBudget(budget: Budget) {
         return this.http.post(this.budgetsEndpoint, budget)
                         .pipe(
