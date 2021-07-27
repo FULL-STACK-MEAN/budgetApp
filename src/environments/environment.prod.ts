@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+    production: true,
+    URLAPIserver: 'http://localhost:3000/'
 };
